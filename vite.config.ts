@@ -3,6 +3,9 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import electron from 'vite-plugin-electron/simple'
 import pkg from './package.json'
+import path from 'path'
+
+const setAlias = (alias: [string, string][]) => alias.map(v => {return { find: v[0], replacement: path.resolve(__dirname, v[1]) }})
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => {
@@ -13,6 +16,13 @@ export default defineConfig(({ command }) => {
   const sourcemap = isServe || !!process.env.VSCODE_DEBUG
 
   return {
+    resolve: {
+        alias: setAlias([
+            ['/@', 'src'],
+            ['/mock', 'mock'],
+            ['/server', 'server']
+        ])
+    },
     plugins: [
       vue(),
       electron({
