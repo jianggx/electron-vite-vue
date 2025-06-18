@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { login, loginParam, getRouterList, getUser } from '/@/api/layout/index'
+import { getRouterList, getUser } from '/@/api/layout/index'
 import { ILayout, IMenubarStatus, ITagsList, IMenubarList, ISetting, IMenubar, IStatus, ITags, IUserInfo } from '/@/type/store/layout'
 import router from '/@/router/index'
 import { allowRouter } from '/@/router/index'
@@ -208,23 +208,13 @@ export const useLayoutStore = defineStore('layout',{
             this.setting.mode = mode
             localStorage.setItem('setting', JSON.stringify(this.setting))
         },
-        async login(param: loginParam):Promise<void> {
-            const res = await login(param)
-            const token = res.data.Data
-            this.status.ACCESS_TOKEN = token
-            setLocal('token', this.status, 1000 * 60 * 60)
-            const { query } = router.currentRoute.value
-            router.push(typeof query.from === 'string' ? decode(query.from) : '/')
-        },
         async getUser():Promise<void> {
-            const res = await getUser()
-            const userInfo = res.data.Data
+            const userInfo = getUser()
             this.userInfo.name = userInfo.name
             this.userInfo.role = userInfo.role
         },
         async GenerateRoutes():Promise<void> {
-            const res = await getRouterList()
-            const { Data } = res.data
+            const Data  = getRouterList()
             generatorDynamicRouter(Data)
         }
     }
