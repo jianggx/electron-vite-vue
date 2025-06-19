@@ -23,9 +23,9 @@ interface IGetuserRes {
 }
 
 export function getUser(): Promise<IGetuserRes> {
-    return getUser1('admin')
+    return Promise.resolve(getUser1('admin')) 
 }
 
 export function getRouterList(): Promise<Array<IMenubarList>> {
-    return getRoute('admin')
+    return Promise.resolve(getRoute('admin'))
 }

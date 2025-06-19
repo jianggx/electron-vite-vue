@@ -209,12 +209,12 @@ export const useLayoutStore = defineStore('layout',{
             localStorage.setItem('setting', JSON.stringify(this.setting))
         },
         async getUser():Promise<void> {
-            const userInfo = getUser()
+            const userInfo = await getUser()
             this.userInfo.name = userInfo.name
             this.userInfo.role = userInfo.role
         },
         async GenerateRoutes():Promise<void> {
-            const Data  = getRouterList()
+            const Data  = await getRouterList()
             generatorDynamicRouter(Data)
         }
     }

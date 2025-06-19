@@ -69,12 +69,6 @@ export const allowRouter:Array<IMenubarList> = [
             }
         ]
     },
-    {
-        name: 'Login',
-        path: '/Login',
-        component: Components.Login,
-        meta: { title: '登录', icon: 'el-icon-eleme', hidden: true }
-    }
 ]
 
 const router = createRouter({

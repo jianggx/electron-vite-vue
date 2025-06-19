@@ -36,6 +36,6 @@ echarts.use(
 )
 
 export {
-    ECOption,
     echarts
-}
+};
+export type { ECOption };

@@ -42,7 +42,7 @@ const search = async(searchList:Ref<ISearchList[]>, menuList: IMenubarList[], se
             if(setting.usePinyinSearch) {
                 const data = await pinyin()
                 obj.pinyinTitle = data.default(v.meta.title, {
-                    style: data.STYLE_NORMAL
+                    style: 'normal'
                 }).join('')
             }
             fuseList.push(obj)
