@@ -4,6 +4,11 @@ import vue from '@vitejs/plugin-vue'
 import electron from 'vite-plugin-electron/simple'
 import pkg from './package.json'
 import path from 'path'
+import postcssImport from 'postcss-import'
+import autoprefixer from 'autoprefixer'
+import postcssSimpleVars from 'postcss-simple-vars'
+import tailwindcss from '@tailwindcss/postcss'
+import tailwindcssNesting from '@tailwindcss/nesting'
 
 const setAlias = (alias: [string, string][]) => alias.map(v => {return { find: v[0], replacement: path.resolve(__dirname, v[1]) }})
 
@@ -25,6 +30,7 @@ export default defineConfig(({ command }) => {
     },
     plugins: [
       vue(),
+      //tailwindcss(),
       electron({
         main: {
           // Shortcut of `build.lib.entry`
@@ -80,5 +86,16 @@ export default defineConfig(({ command }) => {
       }
     })(),
     clearScreen: false,
+    css: {
+        postcss: {
+            plugins: [
+                postcssImport(),
+                postcssSimpleVars(),
+                autoprefixer(),
+                tailwindcssNesting(),
+                tailwindcss(),
+            ]
+        }
+    },
   }
 })
