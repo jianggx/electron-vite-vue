@@ -10,7 +10,7 @@ import '/@/assets/css/index.css'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/display.css'
 import 'nprogress/nprogress.css'
-//import 'virtual:svg-icons-register'
+import 'virtual:svg-icons-register'
 import SvgIcon from '/@/components/SvnIcon/index.vue'
 
 import * as ElIcons from '@element-plus/icons-vue'

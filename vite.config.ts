@@ -9,6 +9,7 @@ import autoprefixer from 'autoprefixer'
 import postcssSimpleVars from 'postcss-simple-vars'
 import tailwindcss from '@tailwindcss/postcss'
 import tailwindcssNesting from '@tailwindcss/nesting'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 const setAlias = (alias: [string, string][]) => alias.map(v => {return { find: v[0], replacement: path.resolve(__dirname, v[1]) }})
 
@@ -30,7 +31,12 @@ export default defineConfig(({ command }) => {
     },
     plugins: [
       vue(),
-      //tailwindcss(),
+      createSvgIconsPlugin({
+          // 指定需要缓存的图标文件夹
+          iconDirs: [path.resolve(__dirname, 'src/icons')],
+          // 指定symbolId格式
+          symbolId: 'icon-[dir]-[name]'
+      }),
       electron({
         main: {
           // Shortcut of `build.lib.entry`
