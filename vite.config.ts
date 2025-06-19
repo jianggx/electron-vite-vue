@@ -24,9 +24,7 @@ export default defineConfig(({ command }) => {
   return {
     resolve: {
         alias: setAlias([
-            ['/@', 'src'],
-            ['/mock', 'mock'],
-            ['/server', 'server']
+            ['/@', path.resolve(__dirname, 'src')],
         ])
     },
     plugins: [
