@@ -1,70 +1,77 @@
 <template>
-    <el-scrollbar>
-        <router-view v-slot='{ Component }'>
-            <transition name='fade-transform' mode='out-in'>  
-                <keep-alive :include='[]'>
-                    <component :is='Component' :key='key' class='page m-3 relative' />
-                </keep-alive>
-            </transition>
-        </router-view>
-        <el-backtop target='.layout-main-content>.el-scrollbar>.el-scrollbar__wrap' :bottom='15' :right='15'>
-            <div><el-icon><el-icon-caret-top /></el-icon></div>
-        </el-backtop>
-    </el-scrollbar>
+  <el-tabs
+    v-model="editableTabsValue"
+    type="card"
+    editable
+    @edit="handleTabsEdit"
+  >
+    <el-tab-pane
+      v-for="item in editableTabs"
+      :key="item.name"
+      :label="item.title"
+      :name="item.name"
+    >
+        <div>
+            {{ item.content }}
+        </div>
+    </el-tab-pane>
+  </el-tabs>
 </template>
 
-<script lang='ts'>
-import { computed, defineComponent, reactive, watch } from 'vue'
-import { useRoute } from 'vue-router'
-import { useLayoutStore } from '/@/store/modules/layout'
+<script lang="ts" setup>
+import { ref } from 'vue'
+import type { TabPaneName } from 'element-plus'
 
-export default defineComponent ({
-    name: 'LayoutContent',
-    setup() {
-        const route = useRoute()
-        const { getSetting, getTags } = useLayoutStore()
+let tabIndex = 2
+const editableTabsValue = ref('2')
+const editableTabs = ref([
+  {
+    title: 'Tab 1',
+    name: '1',
+    content: 'Tab 1 content',
+  },
+  {
+    title: 'Tab 2',
+    name: '2',
+    content: 'Tab 2 content',
+  },
+])
 
-        const key = computed(() => route.path)
-
-        let data = reactive({
-            cachedViews: [...getTags.cachedViews]
-        })
-        // keep-alive的include重新赋值，解决bug https://github.com/vuejs/vue-next/issues/2550
-        watch(
-            () => getTags.cachedViews.length,
-            () => data.cachedViews = [...getTags.cachedViews]
-        )
-        return {
-            key,
-            data,
-            setting: getSetting
+const handleTabsEdit = (
+  targetName: TabPaneName | undefined,
+  action: 'remove' | 'add'
+) => {
+  if (action === 'add') {
+    const newTabName = `${++tabIndex}`
+    editableTabs.value.push({
+      title: 'New Tab',
+      name: newTabName,
+      content: 'New Tab content',
+    })
+    editableTabsValue.value = newTabName
+  } else if (action === 'remove') {
+    const tabs = editableTabs.value
+    let activeName = editableTabsValue.value
+    if (activeName === targetName) {
+      tabs.forEach((tab, index) => {
+        if (tab.name === targetName) {
+          const nextTab = tabs[index + 1] || tabs[index - 1]
+          if (nextTab) {
+            activeName = nextTab.name
+          }
         }
+      })
     }
-})
+
+    editableTabsValue.value = activeName
+    editableTabs.value = tabs.filter((tab) => tab.name !== targetName)
+  }
+}
 </script>
 
-<style lang='postcss' scoped>
+<style>
 
-::v-deep(.el-card) {
-    overflow: visible;
-}
-
-/* ::v-deep(.el-scrollbar__view) {
-    height: 100%;
-} */
-
-.fade-transform-leave-active,
-.fade-transform-enter-active {
-    transition: all 0.5s;
-}
-
-.fade-transform-enter-from {
-    opacity: 0;
-    transform: translateX(-30px);
-}
-
-.fade-transform-leave-to {
-    opacity: 0;
-    transform: translateX(30px);
+.el-tabs__header {
+    margin: 0 0 1px;
 }
 </style>
