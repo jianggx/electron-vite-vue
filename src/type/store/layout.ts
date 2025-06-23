@@ -5,7 +5,6 @@ export enum IMenubarStatus {
     PHN // 手机合并
 }
 export interface ISetting {
-    theme: number
     color: {
         primary: string
     }

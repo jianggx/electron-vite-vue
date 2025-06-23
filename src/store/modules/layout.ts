@@ -29,7 +29,6 @@ export const useLayoutStore = defineStore('layout',{
             isNocacheView: false
         },
         setting: {
-            theme: setting.theme !== undefined ? setting.theme : 0,
             color: {
                 primary: setting.color !== undefined ? setting.color.primary : '#409eff'
             },
@@ -140,18 +139,7 @@ export const useLayoutStore = defineStore('layout',{
         concatAllowRoutes():void {
             allowRouter.reverse().forEach(v => this.menubar.menuList.unshift(v))
         },
-        // 修改主题
-        changeTheme(num?:number):void {
-            if(num === this.setting.theme) return
-            if(typeof num !== 'number') num = this.setting.theme
-            this.setting.theme = num
-            localStorage.setItem('setting', JSON.stringify(this.setting))
-        },
-        // 修改主题色
-        changeThemeColor(color: string):void {
-            this.setting.color.primary = color
-            localStorage.setItem('setting', JSON.stringify(this.setting))
-        },
+
         // 下次进去该页面刷新该页面(解决子页面保存之后，回到父页面页面不刷新问题)
         refreshPage(path: string):void {
             const name = this.tags.tagsList.filter(v => v.path === path)[0]?.name
