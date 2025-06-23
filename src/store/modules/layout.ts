@@ -33,7 +33,6 @@ export const useLayoutStore = defineStore('layout',{
             color: {
                 primary: setting.color !== undefined ? setting.color.primary : '#409eff'
             },
-            usePinyinSearch: setting.usePinyinSearch !== undefined ? setting.usePinyinSearch : false,
             mode: setting.mode || 'vertical'
         },
         status: {
@@ -151,10 +150,6 @@ export const useLayoutStore = defineStore('layout',{
         // 修改主题色
         changeThemeColor(color: string):void {
             this.setting.color.primary = color
-            localStorage.setItem('setting', JSON.stringify(this.setting))
-        },
-        changePinSearchSetting(showPinyinSearch:boolean):void {
-            this.setting.usePinyinSearch = showPinyinSearch
             localStorage.setItem('setting', JSON.stringify(this.setting))
         },
         // 下次进去该页面刷新该页面(解决子页面保存之后，回到父页面页面不刷新问题)

@@ -9,7 +9,6 @@ export interface ISetting {
     color: {
         primary: string
     }
-    usePinyinSearch: boolean
     mode: 'horizontal' | 'vertical' // 导航模式
 }
 export interface IMenubar {

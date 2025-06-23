@@ -38,13 +38,7 @@ const search = async(searchList:Ref<ISearchList[]>, menuList: IMenubarList[], se
             const obj:ISearchList = Object.assign({}, v, { 
                 searchLabel: text + v.meta.title
             })
-            // 判断是否开启拼音搜索
-            if(setting.usePinyinSearch) {
-                const data = await pinyin()
-                obj.pinyinTitle = data.default(v.meta.title, {
-                    style: 'normal'
-                }).join('')
-            }
+
             fuseList.push(obj)
             if(v.children && v.children.length > 0) {
                 f(v.children, `${text + v.meta.title} > `)
@@ -61,16 +55,10 @@ const search = async(searchList:Ref<ISearchList[]>, menuList: IMenubarList[], se
             distance: 100,
             minMatchCharLength: 1,
             includeScore: true,
-            keys: setting.usePinyinSearch ? ['meta.title', 'path', 'pinyinTitle'] : ['meta.title', 'path']
+            keys: ['meta.title', 'path']
         }
     }
     let fuse = new Fuse(fuseList, FuseOpts())
-
-    watch(() => setting.usePinyinSearch, async() => {
-        fuseList.splice(0, fuseList.length)
-        await f(menuList, '')
-        fuse = new Fuse(fuseList, FuseOpts())
-    })
     
     const searchText = (query: string) => {
         if(query !== '') {
