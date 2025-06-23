@@ -21,9 +21,6 @@
                 <layout-content />
             </div>
         </div>
-        <div class='layout-sidebar-sidesetting fixed right-0 top-64 z-10'>
-            <layout-side-setting />
-        </div>
     </div>
 </template>
 
@@ -31,7 +28,6 @@
 import { defineComponent, onMounted } from 'vue'
 import LayoutContent from '/@/layout/components/content.vue'
 import LayoutMenubar from '/@/layout/components/menubar.vue'
-import LayoutSideSetting from '/@/layout/components/sideSetting.vue'
 import { throttle } from '/@/utils/tools'
 import { useLayoutStore } from '/@/store/modules/layout'
 import icon from '/@/assets/img/icon.png'
@@ -41,7 +37,6 @@ export default defineComponent ({
     components: {
         LayoutContent,
         LayoutMenubar,
-        LayoutSideSetting
     },
     setup() {
         const { changeDeviceWidth, changeCollapsed, getMenubar, getSetting } = useLayoutStore()
@@ -67,10 +62,6 @@ export default defineComponent ({
 </script>
 
 <style lang='postcss' scoped>
-    ::v-deep(.layout-sidebar-sidesetting .el-drawer__header) {
-        margin-bottom: 0;
-    }
-
     ::v-deep(.el-menu--horizontal>.el-menu-item) {
         height: 48px;
     }
