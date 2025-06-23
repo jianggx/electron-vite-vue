@@ -1,6 +1,7 @@
 <template>
   <el-tree
     style="max-width: 600px"
+    default-expand-all
     :data="data"
     :props="defaultProps"
     :class='{ 

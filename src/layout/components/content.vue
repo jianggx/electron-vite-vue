@@ -1,17 +1,19 @@
 <template>
   <el-tabs
     v-model="editableTabsValue"
-    type="card"
+    type="border-card"
     editable
     @edit="handleTabsEdit"
+    class="h-full"
   >
     <el-tab-pane
       v-for="item in editableTabs"
       :key="item.name"
       :label="item.title"
       :name="item.name"
+      class="h-full"
     >
-        <div>
+        <div class="bg-gray-100 h-full">
             {{ item.content }}
         </div>
     </el-tab-pane>
@@ -70,8 +72,8 @@ const handleTabsEdit = (
 </script>
 
 <style>
-
-.el-tabs__header {
-    margin: 0 0 1px;
+.el-tabs--border-card>.el-tabs__content {
+    padding: 0px;
 }
+
 </style>
