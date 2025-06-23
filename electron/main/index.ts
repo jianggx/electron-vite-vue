@@ -57,6 +57,10 @@ async function createWindow() {
     },
   })
 
+  win.on('ready-to-show',  () => {
+    win.maximize();  // 最大化窗口 
+  });
+
   if (VITE_DEV_SERVER_URL) { // #298
     win.loadURL(VITE_DEV_SERVER_URL)
     // Open devTool if the app is not packaged

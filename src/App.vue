@@ -97,8 +97,8 @@ export default defineComponent ({
     }
 
     .layout-main-navbar {
-        background-color: v-bind(getSetting.mode === "vertical" || getSetting.isPhone ? themeStyle.navbarBg : themeStyle.sidebarBg);
-        color: v-bind(getSetting.mode === "vertical" || getSetting.isPhone ? themeStyle.navbarColor : themeStyle.sidebarColor);
+        background-color: v-bind(themeStyle.navbarBg);
+        color: v-bind(themeStyle.navbarColor);
 
         .el-breadcrumb .el-breadcrumb__inner,
         .el-breadcrumb .el-breadcrumb__separator,

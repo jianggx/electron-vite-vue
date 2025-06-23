@@ -1,6 +1,6 @@
 <template>
     <el-menu
-        :mode='getMenubar.isPhone ? "vertical" : getSetting.mode'
+        :mode="vertical"
         :default-active='activeMenu'
         :collapse='getMenubar.status === 1 || getMenubar.status === 3'
         :class='{ 
@@ -8,7 +8,6 @@
             "w-64": getMenubar.status === 0 || getMenubar.status === 2, 
             "w-0": getMenubar.status === 3, 
             "w-16": getMenubar.status === 1, 
-            "w-full": getSetting.mode === "horizontal" && !getMenubar.isPhone, 
         }'
         :collapse-transition='false'
         :unique-opened='true'

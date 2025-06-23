@@ -21,30 +21,6 @@
                 </el-col>
             </el-row>
 
-            <p class='py-2'>导航模式</p>
-            <el-row :gutter='20'>
-                <el-col :span='8'>
-                    <div class='flex shadow-lg border border-gray-100 w-18 cursor-pointer m-1' @click='changemenubarMode("vertical")'> 
-                        <div class='flex flex-col w-4 h-12' :style='{"backgroundColor": (theme[getSetting.theme].logoBg || theme[getSetting.theme].sidebarBg)}' />
-                        <div class='flex flex-col flex-1'>
-                            <div class='h-3' :style='{"backgroundColor": theme[getSetting.theme].tagsBg || "#fff"}' />
-                            <div class='flex-1 relative' :style='{"backgroundColor": theme[getSetting.theme].mainBg}'>
-                                <el-icon v-if='getSetting.mode==="vertical"' class='absolute left-2/4 top-2/4 transform -translate-x-2/4 -translate-y-2/4' :style='{"color": getSetting.color.primary}'><el-icon-check /></el-icon>
-                            </div>
-                        </div>
-                    </div>
-                </el-col>
-                <el-col :span='8'>
-                    <div class='flex flex-col shadow-lg border border-gray-100 w-18 cursor-pointer m-1 h-12' @click='changemenubarMode("horizontal")'> 
-                        <div class='flex flex-col h-4' :style='{"backgroundColor": (theme[getSetting.theme].logoBg || theme[getSetting.theme].sidebarBg)}' />
-                        <div class='flex flex-col flex-1'>
-                            <div class='flex-1 relative' :style='{"backgroundColor": theme[getSetting.theme].mainBg}'>
-                                <el-icon v-if='getSetting.mode==="horizontal"' class='absolute left-2/4 top-2/4 transform -translate-x-2/4 -translate-y-2/4' :style='{"color": getSetting.color.primary}'><el-icon-check /></el-icon>
-                            </div>
-                        </div>
-                    </div>
-                </el-col>
-            </el-row>
     
             <div class='mt-5 text-sm'>
                 <div class='flex justify-between items-center py-1'>
