@@ -12,7 +12,6 @@
                         </div>
                         <div class='flex flex-col flex-1'>
                             <div class='h-3' :style='{"backgroundColor": val.navbarBg || "#fff"}' />
-                            <div v-if='getSetting.showTags' class='h-2' :style='{"backgroundColor": val.tagsBg || "#fff"}' />
                             <div class='flex-1 relative' :style='{"backgroundColor": val.mainBg}'>
                                 <el-icon v-if='getSetting.theme===index' class='absolute left-2/4 top-2/4 transform -translate-x-2/4 -translate-y-2/4' :style='{"color": getSetting.color.primary}'><el-icon-check /></el-icon>
                             </div>
@@ -23,10 +22,6 @@
 
     
             <div class='mt-5 text-sm'>
-                <div class='flex justify-between items-center py-1'>
-                    <div>开启 Tags-View</div>
-                    <el-switch v-model='showTags' />
-                </div>
                 <div class='flex justify-between items-center py-1'>
                     <div>主题色</div>
                     <layout-theme />
@@ -52,12 +47,10 @@ export default defineComponent ({
         LayoutTheme
     },
     setup() {
-        const { changeTheme, getSetting, changeTagsSetting, changePinSearchSetting, changemenubarMode } = useLayoutStore()
+        const { changeTheme, getSetting, changePinSearchSetting, changemenubarMode } = useLayoutStore()
         const drawer = ref(false)
-        const showTags = ref(getSetting.showTags)
         const showPinyinSearch = ref(getSetting.usePinyinSearch)
 
-        watch(() => showTags.value, () => changeTagsSetting(showTags.value))
         watch(() => showPinyinSearch.value, () => changePinSearchSetting(showPinyinSearch.value))
 
         return {
@@ -65,7 +58,6 @@ export default defineComponent ({
             theme: theme(),
             changeTheme,
             getSetting,
-            showTags,
             showPinyinSearch,
             changemenubarMode
         }

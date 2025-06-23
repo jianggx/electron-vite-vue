@@ -2,7 +2,7 @@
     <el-scrollbar>
         <router-view v-slot='{ Component }'>
             <transition name='fade-transform' mode='out-in'>  
-                <keep-alive :include='setting.showTags ? data.cachedViews : []'>
+                <keep-alive :include='[]'>
                     <component :is='Component' :key='key' class='page m-3 relative' />
                 </keep-alive>
             </transition>

@@ -6,7 +6,6 @@ export enum IMenubarStatus {
 }
 export interface ISetting {
     theme: number
-    showTags: boolean
     color: {
         primary: string
     }

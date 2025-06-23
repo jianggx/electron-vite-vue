@@ -17,12 +17,6 @@
             </div>
         </div>
         <div class='layout-main flex flex-1 flex-col overflow-x-hidden overflow-y-auto'>
-            <div
-                v-if='getSetting.showTags'
-                class='layout-main-tags h-8 leading-8 text-sm text-gray-600 relative'
-            >
-                <layout-tags />
-            </div>
             <div class='layout-main-content flex-1 overflow-hidden'>
                 <layout-content />
             </div>
@@ -37,7 +31,6 @@
 import { defineComponent, onMounted } from 'vue'
 import LayoutContent from '/@/layout/components/content.vue'
 import LayoutMenubar from '/@/layout/components/menubar.vue'
-import LayoutTags from '/@/layout/components/tags.vue'
 import LayoutSideSetting from '/@/layout/components/sideSetting.vue'
 import { throttle } from '/@/utils/tools'
 import { useLayoutStore } from '/@/store/modules/layout'
@@ -48,7 +41,6 @@ export default defineComponent ({
     components: {
         LayoutContent,
         LayoutMenubar,
-        LayoutTags,
         LayoutSideSetting
     },
     setup() {

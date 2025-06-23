@@ -30,7 +30,6 @@ export const useLayoutStore = defineStore('layout',{
         },
         setting: {
             theme: setting.theme !== undefined ? setting.theme : 0,
-            showTags: setting.showTags !== undefined ? setting.showTags : true,
             color: {
                 primary: setting.color !== undefined ? setting.color.primary : '#409eff'
             },
@@ -73,26 +72,7 @@ export const useLayoutStore = defineStore('layout',{
             this.menubar.isPhone = document.body.offsetWidth < 768
             this.menubar.status = this.menubar.isPhone ? IMenubarStatus.PHN : IMenubarStatus.PCE
         },
-        // 切换导航，记录打开的导航
-        changeTagNavList(cRouter:RouteLocationNormalizedLoaded):void {
-            if(!this.setting.showTags) return // 判断是否开启多标签页
-            // if(cRouter.meta.hidden && !cRouter.meta.activeMenu) return // 隐藏的菜单如果不是子菜单则不添加到标签
-            if(new RegExp('^\/redirect').test(cRouter.path)) return
-            const index = this.tags.tagsList.findIndex(v => v.path === cRouter.path)
-            this.tags.tagsList.forEach(v => v.isActive = false)
-            // 判断页面是否打开过
-            if(index !== -1) {
-                this.tags.tagsList[index].isActive = true
-                return
-            }
-            const tagsList:ITagsList = {
-                name: cRouter.name as string,
-                title: cRouter.meta.title as string,
-                path: cRouter.path,
-                isActive: true
-            }
-            this.tags.tagsList.push(tagsList)
-        },
+
         removeTagNav(obj:{tagsList:ITagsList, cPath: string}):void {
             const index = this.tags.tagsList.findIndex(v => v.path === obj.tagsList.path)
             if(this.tags.tagsList[index].path === obj.cPath) {
@@ -118,12 +98,6 @@ export const useLayoutStore = defineStore('layout',{
             this.tags.tagsList.splice(0)
             this.tags.cachedViews.splice(0)
             router.push({ path: '/redirect/' })
-        },
-        // 添加缓存页面
-        addCachedViews(obj: {name: string, noCache: boolean}):void {
-            if(!this.setting.showTags) return // 判断是否开启多标签页
-            if(obj.noCache || this.tags.cachedViews.includes(obj.name)) return
-            this.tags.cachedViews.push(obj.name)
         },
         // 删除缓存页面
         removeCachedViews(obj: { name: string, index: number }):void {
@@ -178,20 +152,6 @@ export const useLayoutStore = defineStore('layout',{
         changeThemeColor(color: string):void {
             this.setting.color.primary = color
             localStorage.setItem('setting', JSON.stringify(this.setting))
-        },
-        changeTagsSetting(showTags:boolean):void {
-            this.setting.showTags = showTags
-            localStorage.setItem('setting', JSON.stringify(this.setting))
-    
-            if(showTags) {
-                const index = this.tags.tagsList.findIndex(v => v.path === router.currentRoute.value.path)
-                if(index !== -1) {
-                    this.tags.tagsList.forEach(v => v.isActive = false)
-                    this.tags.tagsList[index].isActive = true
-                }else{
-                    this.changeTagNavList(router.currentRoute.value)
-                }
-            }
         },
         changePinSearchSetting(showPinyinSearch:boolean):void {
             this.setting.usePinyinSearch = showPinyinSearch
