@@ -12,7 +12,7 @@
             </div>
             <div class='layout-sidebar-menubar flex flex-1 overflow-hidden'>
                 <el-scrollbar wrap-class='scrollbar-wrapper'>
-                    <layout-menubar />
+                    <layout-sidebar />
                 </el-scrollbar>
             </div>
         </div>
@@ -27,7 +27,7 @@
 <script lang='ts'>
 import { defineComponent, onMounted } from 'vue'
 import LayoutContent from '/@/layout/components/content.vue'
-import LayoutMenubar from '/@/layout/components/menubar.vue'
+import LayoutSidebar from '/@/layout/components/sidebar.vue'
 import { throttle } from '/@/utils/tools'
 import { useLayoutStore } from '/@/store/modules/layout'
 import icon from '/@/assets/img/icon.png'
@@ -36,7 +36,7 @@ export default defineComponent ({
     name: 'Layout',
     components: {
         LayoutContent,
-        LayoutMenubar,
+        LayoutSidebar,
     },
     setup() {
         const { changeDeviceWidth, changeCollapsed, getMenubar, getSetting } = useLayoutStore()
