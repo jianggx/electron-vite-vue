@@ -128,3 +128,15 @@ ipcMain.handle('open-win', (_, arg) => {
     childWindow.loadFile(indexHtml, { hash: arg })
   }
 })
+
+// render -> main
+ipcMain.on('set-title', (event, title) => {
+  const webContents = event.sender
+  const win = BrowserWindow.fromWebContents(webContents)
+  win.setTitle(title)
+})
+
+// render <-> main
+ipcMain.handle('say-hello', async (event, name) => {
+  return sayHello(name)
+})

@@ -7,15 +7,22 @@
     class="h-full"
   >
     <el-tab-pane
-      v-for="item in editableTabs"
-      :key="item.name"
-      :label="item.title"
-      :name="item.name"
+      key="1"
+      label="table 1"
+      name="1"
       class="h-full"
     >
         <div class="bg-gray-100 h-full">
-            {{ item.content }}
+            table 1
         </div>
+    </el-tab-pane>
+    <el-tab-pane
+      key="2"
+      label="welcome"
+      name="welcome"
+      class="h-full"
+    >
+      <welcome-panel />
     </el-tab-pane>
   </el-tabs>
 </template>
@@ -23,6 +30,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import type { TabPaneName } from 'element-plus'
+import WelcomePanel from '/@/layout/components/welcome.vue'
 
 let tabIndex = 2
 const editableTabsValue = ref('2')
