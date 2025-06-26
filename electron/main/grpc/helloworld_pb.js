@@ -11,8 +11,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import jspb from 'google-protobuf'
-var goog = jspb
+import jspb from 'google-protobuf';
+var goog = jspb;
+var global = (function() {
+  if (this) { return this; }
+  if (typeof window !== 'undefined') { return window; }
+  if (typeof global !== 'undefined') { return global; }
+  if (typeof self !== 'undefined') { return self; }
+  return Function('return this')();
+}.call(null));
 
 goog.exportSymbol('proto.helloworld.HelloReply', null, global);
 goog.exportSymbol('proto.helloworld.HelloRequest', null, global);

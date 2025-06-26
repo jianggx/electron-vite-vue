@@ -16,9 +16,6 @@
 // limitations under the License.
 //
 'use strict';
-// var grpc = require('@grpc/grpc-js');
-// var helloworld_pb = require('./helloworld_pb.js');
-
 import grpc from '@grpc/grpc-js'
 import helloworld_pb from './helloworld_pb.js'
 
@@ -46,9 +43,8 @@ function deserialize_helloworld_HelloRequest(buffer_arg) {
 
 
 // The greeting service definition.
-//var GreeterService = exports.GreeterService = {
-  // Sends a greeting
 export const GreeterService = {
+  // Sends a greeting
 sayHello: {
     path: '/helloworld.Greeter/SayHello',
     requestStream: false,
@@ -84,5 +80,4 @@ sayHello: {
   },
 };
 
-//exports.GreeterClient = grpc.makeGenericClientConstructor(GreeterService, 'Greeter');
 export const GreeterClient = grpc.makeGenericClientConstructor(GreeterService, 'Greeter');
