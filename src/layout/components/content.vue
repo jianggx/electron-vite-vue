@@ -7,16 +7,6 @@
     class="h-full"
   >
     <el-tab-pane
-      key="1"
-      label="table 1"
-      name="1"
-      class="h-full"
-    >
-        <div class="bg-gray-100 h-full">
-            table 1
-        </div>
-    </el-tab-pane>
-    <el-tab-pane
       key="2"
       label="welcome"
       name="welcome"
@@ -24,6 +14,15 @@
     >
       <welcome-panel />
     </el-tab-pane>
+    <el-tab-pane
+      key="1"
+      label="sdr-1"
+      name="1"
+      class="h-full"
+    >
+      <device-panel />
+    </el-tab-pane>
+
   </el-tabs>
 </template>
 
@@ -31,9 +30,10 @@
 import { ref } from 'vue'
 import type { TabPaneName } from 'element-plus'
 import WelcomePanel from '/@/layout/components/welcome.vue'
+import DevicePanel from '/@/layout/components/device.vue'
 
 let tabIndex = 2
-const editableTabsValue = ref('2')
+const editableTabsValue = ref('welcome')
 const editableTabs = ref([
   {
     title: 'Tab 1',

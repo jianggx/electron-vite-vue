@@ -56,10 +56,12 @@
   "dependencies": {
     "@grpc/grpc-js": "^1.13.4",
     "@grpc/proto-loader": "^0.7.15",
+    "codemirror": "^6.0.2",
     "echarts": "^5.6.0",
     "element-plus": "^2.10.1",
     "fuse.js": "^7.1.0",
     "pinyin": "^4.0.0",
-    "screenfull": "^6.0.2"
+    "screenfull": "^6.0.2",
+    "vue-codemirror": "^6.1.1"
   }
 }

@@ -1,0 +1,91 @@
+<template>
+    <div class="flex h-full  flex-col">
+        <div class="flex m-1 h-f20 flex-row"> 
+            <el-button @click="">连接</el-button>
+            <el-button @click="">断开</el-button>
+            <div class="flex flex-row flex-1 justify-end items-center"> 
+                自定义脚本:
+                <div class="flex w-50">
+                    <el-select class="flex" v-model="custom_script" placeholder="Select">
+                        <el-option
+                            v-for="item in options"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value"
+                        />
+                    </el-select>                      
+                </div>
+                <el-button class="flex" @click="">查询</el-button>
+                <el-button class="flex" @click="">执行</el-button>
+            </div>
+        </div>
+        <div class="flex m-1 h-f20 flex-row"> 
+            <el-button @click="">过滤设置</el-button>
+            <div class="flex w-50">
+                <el-select class="flex" v-model="custom_script" placeholder="Select">
+                    <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                    />
+                </el-select>                      
+            </div>
+            <el-checkbox-button class="flex m-0 p-0">.*</el-checkbox-button>
+            <el-button class="flex" @click="">搜索</el-button>
+            <div class="flex flex-row flex-1 justify-end items-center"> 
+                <div class="flex w-80"><el-input class="flex" placeholder="请输入内容" /></div>
+                <el-button class="flex" @click="">查询</el-button>
+                <el-button class="flex" @click="" icon='el-icon-menu'></el-button>
+            </div>
+        </div>
+        <div class="flex m-1 flex-col h-full  overflow-hidden flex-1">
+            <codemirror
+                v-model="code"
+                placeholder="Code goes here..."
+                :disabled="true"
+            />
+        </div>
+        <div class="flex m-1 h-f10 flex-row">
+            <el-button class="flex" size="small" @click="" icon='el-icon-video-play'></el-button>
+            <el-button class="flex" size="small" @click="" icon='el-icon-video-pause'></el-button>
+        </div>
+    </div>
+</template>
+<script lang="ts" setup>
+import { ref, onMounted } from 'vue'
+import { Codemirror } from 'vue-codemirror'
+
+const custom_script = ref('')
+const options = [
+    {
+        value: '1',
+        label: 'Option 1'
+    },
+    {
+        value: '2',
+        label: 'Option 2'
+    }
+]
+
+var code = ref(`console.log('Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')\n`)
+
+
+onMounted(() => {
+    for(let i=0; i<100; i++){
+        code.value += `console.log('Hello, world!')\n`
+    }
+   
+})
+
+</script>
+
+<style> 
+.cm-editor {
+    height: 100%;
+}
+.cm-scroller {
+    overflow: "scroll";
+    height: "100%"
+}
+</style>
