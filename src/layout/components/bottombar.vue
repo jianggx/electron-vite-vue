@@ -1,14 +1,10 @@
 <template>
     <el-tabs type='border-card' tab-position="bottom" class="w-full">
-        <el-tab-pane label='通知'>
-            <list :data='data'>
-                <template #default='scope'>
-                    <el-button @click='edit(scope.item)'>操作</el-button>
-                </template>
-            </list>
+        <el-tab-pane label='日志详情'>
         </el-tab-pane>
-        <el-tab-pane label='关注'>
-            <list :data='data' />
+        <el-tab-pane label='查询结果'>
+        </el-tab-pane>
+        <el-tab-pane label='输出'>
         </el-tab-pane>
     </el-tabs>
 </template>

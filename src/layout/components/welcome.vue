@@ -1,9 +1,10 @@
 <template>
+<div class="flex flex-col">
+    <div class="flex h-20"></div>
     <div class="flex flex-row">
         <div class="w-1/2 flex flex-row">
             <div class="flex-1"></div>
             <div class="flex flex-col">
-                <div class="h-4"></div>
                 项目：
                 <div class="flex flex-col"> 
                     <el-link class="ml-5 w-fit" @click="" type="primary" underline="always">新建项目</el-link>
@@ -21,7 +22,6 @@
         </div>
         <div class="w-1/2 flex flex-row">
             <div class="flex flex-col">
-                <div class="h-4"></div>
                 帮助：
                 <div class="flex flex-col align-start"> 
                     <el-link class="ml-5 w-fit" @click="" type="primary" underline="always">使用指南...</el-link>
@@ -38,6 +38,7 @@
         </div>
     </div>
     <h1> {{ greeter }}</h1>
+</div>
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'

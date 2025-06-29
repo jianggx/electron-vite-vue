@@ -25,7 +25,7 @@
             </div>
         </div>
     </div>
-    <div class="flex h-fit">
+    <div class="flex h-6">
         <LayoutStatusbar />
     </div>
     </div>

@@ -1,6 +1,6 @@
 <template>
     <div class="flex h-full  flex-col">
-        <div class="flex m-1 h-f20 flex-row"> 
+        <div class="flex m-1 flex-row"> 
             <el-button @click="">连接</el-button>
             <el-button @click="">断开</el-button>
             <div class="flex flex-row flex-1 justify-end items-center"> 
@@ -19,7 +19,7 @@
                 <el-button class="flex" @click="">执行</el-button>
             </div>
         </div>
-        <div class="flex m-1 h-f20 flex-row"> 
+        <div class="flex m-1 flex-row"> 
             <el-button @click="">过滤设置</el-button>
             <div class="flex w-50">
                 <el-select class="flex" v-model="custom_script" placeholder="Select">
