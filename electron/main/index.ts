@@ -1,10 +1,11 @@
-import { app, BrowserWindow, shell, ipcMain } from 'electron'
+import { app, BrowserWindow, shell, ipcMain, Menu } from 'electron'
 import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 import os from 'node:os'
 
 import {sayHello} from './grpc/apis'
+import { l } from 'vite/dist/node/types.d-aGj9QkWt'
 
 let ss = sayHello('hellooooo').then((res) => {
   console.log('-----------'+res)
@@ -47,7 +48,50 @@ if (!app.requestSingleInstanceLock()) {
 let win: BrowserWindow | null = null
 const preload = path.join(__dirname, '../preload/index.mjs')
 const indexHtml = path.join(RENDERER_DIST, 'index.html')
-
+const isMac = process.platform === 'darwin'
+function setupMenu(app: Electron.App) { 
+const template: Electron.MenuItemConstructorOptions[] = [
+    // { role: 'fileMenu' }
+    {
+      label: '文件',
+      submenu: [
+        {
+          label: '新建项目',
+          click: async () => { }
+        },
+        {
+          label: '打开项目',
+          click: async () => { }
+        },
+        {
+          label: '打开设备',
+          click: async () => { }
+        }, 
+        {
+          label: '导入日志',
+          click: async () => { }
+        },     
+        isMac ? { role: 'close', label: '关闭' } : { role: 'quit', label: '退出' }
+      ]
+    },
+    {
+      label: '帮助',
+      submenu: [
+        {
+          label: '欢迎',
+          click: async () => { }
+        }, 
+        {
+          label: '关于',
+          click: async () => { }
+        }, 
+      ]
+    }
+  ]
+ 
+  const menu = Menu.buildFromTemplate(template);
+  Menu.setApplicationMenu(menu);
+}
 async function createWindow() {
   win = new BrowserWindow({
     title: 'Main window',
@@ -64,6 +108,7 @@ async function createWindow() {
   })
 
   win.on('ready-to-show',  () => {
+    setupMenu(app);
     win.maximize();  // 最大化窗口 
   });
 
