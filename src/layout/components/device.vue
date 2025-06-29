@@ -44,6 +44,8 @@
                 v-model="code"
                 placeholder="Code goes here..."
                 :disabled="true"
+                :extensions="extensions"
+                @ready="handleReady"
             />
         </div>
         <div class="flex m-1 h-f10 flex-row">
@@ -53,8 +55,10 @@
     </div>
 </template>
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, shallowRef } from 'vue'
 import { Codemirror } from 'vue-codemirror'
+import { oneDark } from '@codemirror/theme-one-dark'
+import {EditorView } from "codemirror"
 
 const custom_script = ref('')
 const options = [
@@ -69,7 +73,11 @@ const options = [
 ]
 
 var code = ref(`console.log('Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')\n`)
-
+const extensions = [EditorView.lineWrapping] // [oneDark, EditorView.lineWrapping]
+const view = shallowRef()
+const handleReady = (payload) => {
+    view.value = payload.view
+}
 
 onMounted(() => {
     for(let i=0; i<100; i++){
