@@ -1,6 +1,6 @@
 <template>
     <div class='layout flex flex-col h-screen w-screen'>
-    <div class="flex flex-row h-full" >
+    <div class="flex flex-row h-full overflow-hidden" >
         <div
             class='layout-sidebar flex flex-col transition-width duration-200 shadow'
             :class='{ 
