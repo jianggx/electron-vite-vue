@@ -1,14 +1,19 @@
 <template>
-  <el-tree
-    style="max-width: 600px"
-    default-expand-all
-    :data="data"
-    :props="defaultProps"
-    :class='{ 
-        "w-64": true
-    }'
-    @node-click="handleNodeClick"
-  />
+  <div class="h-full w-full flex flex-col "> 
+    <div class='layout-sidebar-logo text-sm flex h-7 relative flex-center'>
+        测试项目xxx
+    </div>
+    <div class='border-1 border-solid border-gray-300 flex-1 h-full overflow-auto'>
+      <el-tree
+        default-expand-all
+        :data="data"
+        :props="defaultProps"
+        @node-click="handleNodeClick"
+      />
+    </div>
+  </div>
+
+
 </template>
 
 <script lang="ts" setup>
@@ -23,60 +28,37 @@ const handleNodeClick = (data: Tree) => {
 
 const data: Tree[] = [
   {
-    label: 'Level one 1',
+    label: 'SDR-1',
     children: [
-      {
-        label: 'Level two 1-1',
-        children: [
-          {
-            label: 'Level three 1-1-1',
-          },
-        ],
-      },
+      { label: 'analysis-1'},
+      { label: 'analysis-2'},      
+      { label: 'log-2021-09-01'},
+      { label: 'log-2021-09-02'},
+      { label: 'log-2021-09-03'},
     ],
   },
   {
-    label: 'Level one 2',
+    label: 'KA-1',
     children: [
-      {
-        label: 'Level two 2-1',
-        children: [
-          {
-            label: 'Level three 2-1-1',
-          },
-        ],
-      },
-      {
-        label: 'Level two 2-2',
-        children: [
-          {
-            label: 'Level three 2-2-1',
-          },
-        ],
-      },
+      { label: 'analysis-1'},
+      { label: 'analysis-2'},      
+      { label: 'log-2021-09-01'},
+      { label: 'log-2021-09-02'},
+      { label: 'log-2021-09-03'},
     ],
   },
   {
-    label: 'Level one 3',
+    label: 'KA-2',
     children: [
-      {
-        label: 'Level two 3-1',
-        children: [
-          {
-            label: 'Level three 3-1-1',
-          },
-        ],
-      },
-      {
-        label: 'Level two 3-2',
-        children: [
-          {
-            label: 'Level three 3-2-1',
-          },
-        ],
-      },
+      { label: 'analysis-1'},
+      { label: 'analysis-2'},      
+      { label: 'log-2021-09-01'},
+      { label: 'log-2021-09-02'},
+      { label: 'log-2021-09-03'},
     ],
   },
+  { label: 'analysis-1'},
+  { label: 'analysis-2'},    
 ]
 
 const defaultProps = {
