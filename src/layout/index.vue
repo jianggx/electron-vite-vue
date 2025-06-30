@@ -21,7 +21,7 @@
                 <layout-content />
             </div>
             <div class="flex h-50">
-                <layout-bottombar />
+                <bottom-area />
             </div>
         </div>
     </div>
@@ -36,7 +36,7 @@ import { onMounted } from 'vue'
 import LayoutContent from '/@/layout/components/content.vue'
 import LayoutSidebar from '/@/layout/components/sidebar.vue'
 import LayoutStatusbar from '/@/layout/components/statusbar.vue'
-import LayoutBottombar from '/@/layout/components/bottombar.vue'
+import BottomArea from '/@/layout/components/bottomArea.vue'
 import { useLayoutStore } from '/@/store/modules/layout'
 
 
@@ -54,4 +54,8 @@ const { changeDeviceWidth, changeCollapsed, getMenubar, getSetting } = useLayout
         height: 48px;
         line-height: 48px;
     }
+
+    .el-tab-pane {
+        height: 100%;
+    }   
 </style>

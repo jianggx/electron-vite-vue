@@ -88,12 +88,29 @@ onMounted(() => {
 
 </script>
 
-<style> 
+<style>
+/* 设置日志空间垂直滚动 */
 .cm-editor {
     height: 100%;
 }
 .cm-scroller {
     overflow: "scroll";
     height: "100%"
+}
+
+.el-tabs__header { 
+  height: 28px !important;  /* 设定目标高度 */
+}
+
+/* 调整导航标签项高度 */
+.el-tabs__nav {
+  height: 100%;             /* 继承父容器高度 */
+}
+ 
+/* 单个标签项高度适配 */
+.el-tabs__item {
+  height: 100%;            /* 继承导航栏高度 */
+  line-height: 28px !important; /* 垂直居中 */
+  padding: 0 20px !important;  /* 调整左右间距 */
 }
 </style>
