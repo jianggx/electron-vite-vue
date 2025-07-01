@@ -84,7 +84,7 @@ const extensions = [
         let row = line.number;
         let col = cursor - line.from;
         console.log("line = " + row + " col = " + col);
-        console.log(view.state.doc.line(row))
+        alert(view.state.doc.line(row).text)
     },
 })] // [oneDark, EditorView.lineWrapping]
 const view = shallowRef()
