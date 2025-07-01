@@ -73,7 +73,20 @@ const options = [
 ]
 
 var code = ref(`console.log('Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')\n`)
-const extensions = [EditorView.lineWrapping] // [oneDark, EditorView.lineWrapping]
+
+const extensions = [ 
+    EditorView.lineWrapping, 
+    EditorView.domEventHandlers({
+    click: (event, view) => {
+        console.log(event)
+        let cursor = view.state.selection.main.head;
+        let line = view.state.doc.lineAt(cursor);
+        let row = line.number;
+        let col = cursor - line.from;
+        console.log("line = " + row + " col = " + col);
+        console.log(view.state.doc.line(row))
+    },
+})] // [oneDark, EditorView.lineWrapping]
 const view = shallowRef()
 const handleReady = (payload) => {
     view.value = payload.view
