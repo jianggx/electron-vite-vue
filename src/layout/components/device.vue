@@ -31,7 +31,7 @@
                     />
                 </el-select>                      
             </div>
-            <el-checkbox-button class="flex m-0 p-0">.*</el-checkbox-button>
+            <el-checkbox-button class="wildcarc_pattern flex m-0 p-0">.*</el-checkbox-button>
             <el-button class="flex" @click="">搜索</el-button>
             <div class="flex flex-row flex-1 justify-end items-center"> 
                 <div class="flex w-80"><el-input class="flex" placeholder="请输入内容" /></div>
@@ -112,5 +112,10 @@ onMounted(() => {
   height: 100%;            /* 继承导航栏高度 */
   line-height: 28px !important; /* 垂直居中 */
   padding: 0 20px !important;  /* 调整左右间距 */
+}
+
+.wildcarc_pattern .el-checkbox-button__inner {
+    padding-left: 4px;
+    padding-right: 4px;
 }
 </style>

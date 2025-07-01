@@ -15,3 +15,9 @@ import { ref } from 'vue'
 import LogDetailPanel from '/@/layout/components/logDetailPanel.vue'
 
 </script>
+
+<style>
+.el-tabs--bottom .el-tabs__header.is-bottom {
+    margin-top: 0px;
+}
+</style>
