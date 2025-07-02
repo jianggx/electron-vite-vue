@@ -1,7 +1,7 @@
 <template>
   <div class="h-full w-full flex flex-col "> 
     <div class='layout-sidebar-logo text-sm flex h-7 relative flex-center'>
-        测试项目xxx
+        <el-text>测试项目xxx</el-text>
     </div>
     <div class='border-1 border-solid border-gray-300 flex-1 h-full overflow-auto'>
       <el-tree

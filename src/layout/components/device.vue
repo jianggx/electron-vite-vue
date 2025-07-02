@@ -1,11 +1,14 @@
 <template>
     <div class="flex h-full  flex-col">
         <div class="flex m-1 flex-row"> 
-            <el-button @click="">连接</el-button>
-            <el-button @click="">断开</el-button>
+            <el-button-group>
+                <el-button @click="myaleret('连接')">连接</el-button>
+                <el-button @click="">断开</el-button>
+            </el-button-group>
+
             <div class="flex flex-row flex-1 justify-end items-center"> 
-                自定义脚本:
-                <div class="flex w-50">
+                <el-text>自定义脚本:</el-text> 
+                <div class="flex w-60 ml-1">
                     <el-select class="flex" v-model="custom_script" placeholder="Select">
                         <el-option
                             v-for="item in options"
@@ -15,26 +18,31 @@
                         />
                     </el-select>                      
                 </div>
-                <el-button class="flex" @click="">查询</el-button>
-                <el-button class="flex" @click="">执行</el-button>
+                <el-button-group>
+                    <el-button class="flex" @click="">查询</el-button>
+                    <el-button class="flex" @click="">执行</el-button>
+                </el-button-group>
             </div>
         </div>
-        <div class="flex m-1 flex-row"> 
-            <el-button @click="">过滤设置</el-button>
-            <div class="flex w-50">
-                <el-select class="flex" v-model="custom_script" placeholder="Select">
-                    <el-option
-                    v-for="item in options"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                    />
-                </el-select>                      
+        <div class="flex m-1 flex-row "> 
+            <div class="flex w-95">
+                <el-input
+                    v-model="search_input"
+                    placeholder="Please input"   
+                >
+                <template #prepend>
+                    <el-button  @click="myaleret('过滤设置')" >过滤设置</el-button>
+                </template>
+                <template #append>
+                    <el-button class="flex" @click="">搜索</el-button>
+                </template>
+                </el-input>
+                <el-checkbox-button class="wildcarc_pattern flex m-0 p-0" style="position: relative; left: -79px;">.*</el-checkbox-button>
             </div>
-            <el-checkbox-button class="wildcarc_pattern flex m-0 p-0">.*</el-checkbox-button>
-            <el-button class="flex" @click="">搜索</el-button>
             <div class="flex flex-row flex-1 justify-end items-center"> 
-                <div class="flex w-80"><el-input class="flex" placeholder="请输入内容" /></div>
+                <div class="flex w-80">
+                    <el-input class="flex" v-model="query_input" placeholder="请输入内容" />
+                </div>
                 <el-button class="flex" @click="">查询</el-button>
                 <el-button class="flex" @click="" icon='el-icon-menu'></el-button>
             </div>
@@ -60,6 +68,8 @@ import { Codemirror } from 'vue-codemirror'
 import { oneDark } from '@codemirror/theme-one-dark'
 import {EditorView } from "codemirror"
 
+const search_input = ref('')
+const query_input = ref('')
 const custom_script = ref('')
 const options = [
     {
@@ -90,6 +100,10 @@ const extensions = [
 const view = shallowRef()
 const handleReady = (payload) => {
     view.value = payload.view
+}
+
+const myaleret = (msg) => {
+    alert(msg)
 }
 
 onMounted(() => {
