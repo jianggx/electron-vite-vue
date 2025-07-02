@@ -1,6 +1,6 @@
 <template>
     <div class="flex h-full  flex-col">
-        <div class="flex m-1 flex-row"> 
+        <div class="flex ml-0.5 mr-0.5 mt-0.5 flex-row"> 
             <el-button-group>
                 <el-button @click="myaleret('连接')">连接</el-button>
                 <el-button @click="">断开</el-button>
@@ -24,7 +24,7 @@
                 </el-button-group>
             </div>
         </div>
-        <div class="flex m-1 flex-row "> 
+        <div class="flex ml-0.5 mr-0.5 mt-0.5  flex-row "> 
             <div class="flex w-95">
                 <el-input
                     v-model="search_input"
@@ -47,7 +47,7 @@
                 <el-button class="flex" @click="" icon='el-icon-menu'></el-button>
             </div>
         </div>
-        <div class="flex m-1 flex-col h-full  overflow-hidden flex-1">
+        <div class="flex ml-0.5 mr-0.5 mt-0.5  flex-col h-full  overflow-hidden flex-1">
             <codemirror
                 v-model="code"
                 placeholder="Code goes here..."
@@ -56,10 +56,10 @@
                 @ready="handleReady"
             />
         </div>
-        <div class="flex m-1 h-f10 flex-row">
+        <div class="flex ml-0.5 mr-0.5 mt-0.5  h-f10 flex-row">
             <el-button class="flex" size="small" @click="" icon='el-icon-video-play'></el-button>
             <el-button class="flex" size="small" @click="" icon='el-icon-video-pause'></el-button>
-        </div>
+    </div>
     </div>
 </template>
 <script lang="ts" setup>
