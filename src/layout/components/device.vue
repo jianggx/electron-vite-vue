@@ -48,13 +48,7 @@
             </div>
         </div>
         <div class="flex ml-0.5 mr-0.5 mt-0.5  flex-col h-full  overflow-hidden flex-1">
-            <codemirror
-                v-model="code"
-                placeholder="Code goes here..."
-                :disabled="true"
-                :extensions="extensions"
-                @ready="handleReady"
-            />
+            <logListCodemirror>   </logListCodemirror>
         </div>
         <div class="flex ml-0.5 mr-0.5 mt-0.5  h-f10 flex-row">
             <el-button class="flex" size="small" @click="" icon='el-icon-video-play'></el-button>
@@ -64,9 +58,7 @@
 </template>
 <script lang="ts" setup>
 import { ref, onMounted, shallowRef } from 'vue'
-import { Codemirror } from 'vue-codemirror'
-import { oneDark } from '@codemirror/theme-one-dark'
-import {EditorView } from "codemirror"
+import logListCodemirror from '/@/layout/components/logListCodemirror.vue'
 
 const search_input = ref('')
 const query_input = ref('')
@@ -82,48 +74,14 @@ const options = [
     }
 ]
 
-var code = ref(`console.log('Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')Hello, world!')\n`)
-
-const extensions = [ 
-    EditorView.lineWrapping, 
-    EditorView.domEventHandlers({
-    click: (event, view) => {
-        console.log(event)
-        let cursor = view.state.selection.main.head;
-        let line = view.state.doc.lineAt(cursor);
-        let row = line.number;
-        let col = cursor - line.from;
-        console.log("line = " + row + " col = " + col);
-        alert(view.state.doc.line(row).text)
-    },
-})] // [oneDark, EditorView.lineWrapping]
-const view = shallowRef()
-const handleReady = (payload) => {
-    view.value = payload.view
-}
-
 const myaleret = (msg) => {
     alert(msg)
 }
 
-onMounted(() => {
-    for(let i=0; i<100; i++){
-        code.value += `console.log('Hello, world!')\n`
-    }
-   
-})
 
 </script>
 
 <style>
-/* 设置日志空间垂直滚动 */
-.cm-editor {
-    height: 100%;
-}
-.cm-scroller {
-    overflow: "scroll";
-    height: "100%"
-}
 
 .el-tabs__header { 
   height: 28px !important;  /* 设定目标高度 */
