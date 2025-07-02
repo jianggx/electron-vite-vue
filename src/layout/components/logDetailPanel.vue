@@ -3,7 +3,7 @@
     <el-splitter>
       <el-splitter-panel>
         <div class="w-full h-full overflow-auto">
-            <el-tree class="w-full h-full"
+            <el-tree class="w-fit h-full"
                 default-expand-all
                 :data="data"
                 :props="defaultProps"
