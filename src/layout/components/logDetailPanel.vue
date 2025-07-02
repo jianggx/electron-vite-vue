@@ -1,30 +1,36 @@
 <template>
 <div class="flex h-full flex-row">
-    <div class="w-full h-full overflow-auto border-1 border-solid border-gray-300">
-        <el-tree class="w-full h-full"
-            default-expand-all
-            :data="data"
-            :props="defaultProps"
-            @node-click="handleNodeClick"
-        />
-    </div>
-    <div class="w-110 text-sm h-full overflow-auto border-1 border-solid border-gray-300">
-         10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac
-         10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac
-         10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac
-         10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac
-         10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac
-         10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac
-         10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac
-         10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac
-         10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac
-         10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac
-         10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac
-         10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac
-         10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac
-         10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac
-         10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac
-    </div>  
+    <el-splitter>
+      <el-splitter-panel>
+        <div class="w-full h-full overflow-auto">
+            <el-tree class="w-full h-full"
+                default-expand-all
+                :data="data"
+                :props="defaultProps"
+                @node-click="handleNodeClick"
+            />
+        </div>
+      </el-splitter-panel>
+      <el-splitter-panel :size="450" >
+        <div class="text-sm h-full w-120 overflow-auto p-1">
+            <div>10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac &nbsp; &nbsp; ..Ma...1 &nbsp; ..a.,]..</div>
+            <div>10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac &nbsp; &nbsp; ..Ma...1 &nbsp; ..a.,]..</div>
+            <div>10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac &nbsp; &nbsp; ..Ma...1 &nbsp; ..a.,]..</div>
+            <div>10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac &nbsp; &nbsp; ..Ma...1 &nbsp; ..a.,]..</div>
+            <div>10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac &nbsp; &nbsp; ..Ma...1 &nbsp; ..a.,]..</div>
+            <div>10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac &nbsp; &nbsp; ..Ma...1 &nbsp; ..a.,]..</div>
+            <div>10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac &nbsp; &nbsp; ..Ma...1 &nbsp; ..a.,]..</div>
+            <div>10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac &nbsp; &nbsp; ..Ma...1 &nbsp; ..a.,]..</div>
+            <div>10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac &nbsp; &nbsp; ..Ma...1 &nbsp; ..a.,]..</div>
+            <div>10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac &nbsp; &nbsp; ..Ma...1 &nbsp; ..a.,]..</div>
+            <div>10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac &nbsp; &nbsp; ..Ma...1 &nbsp; ..a.,]..</div>
+            <div>10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac &nbsp; &nbsp; ..Ma...1 &nbsp; ..a.,]..</div>
+            <div>10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac &nbsp; &nbsp; ..Ma...1 &nbsp; ..a.,]..</div>
+            <div>10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac &nbsp; &nbsp; ..Ma...1 &nbsp; ..a.,]..</div>
+            <div>10 00 3f 26 ac 33 22 10 &nbsp; 00 01 10 ff 10 10 00 ac &nbsp; &nbsp; ..Ma...1 &nbsp; ..a.,]..</div>
+        </div>  
+      </el-splitter-panel>
+    </el-splitter>
 </div>
 </template>
 
@@ -64,7 +70,7 @@ const data: Tree[] = [
     ]
 },
 {
-'label': 'Ethernet II, Src: c2:84:ea:f2:4d:75 (c2:84:ea:f2:4d:75), Dst: Apple_d9:8b:a7 (6c:96:cf:d9:8b:a7)',
+'label': 'Ethernet II, Src: c2:84:ea:f2:4d:75 (c2:84:ea:f2:4d:75), Dst: Apple_d9:8b:a7 (6c:96:cf:d9:8b:a7)======================================================================',
 'children': [
     {'label':'Destination: Apple_d9:8b:a7 (6c:96:cf:d9:8b:a7)',
      'children':[

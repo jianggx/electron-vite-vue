@@ -1,22 +1,37 @@
 <template>
-    <div class='layout flex flex-col h-screen w-screen'>
-    <div class="flex flex-row h-full overflow-hidden" >
-        <div class='flex h-full w-64'>   
-            <layout-sidebar />
-        </div>
-        <div class='layout-main flex flex-1 flex-col overflow-x-hidden overflow-y-auto'>
-            <div class='layout-main-content h-full overflow-hidden'>
-                <layout-content />
+<div class='layout flex flex-col h-screen w-screen'>
+    <div class="flex flex-row h-full" >
+        <el-splitter>
+        <el-splitter-panel :size="220">
+            <div class='flex h-full w-full overflow-hidden'>   
+                <layout-sidebar />
             </div>
-            <div class="flex h-50">
-                <bottom-area />
+        </el-splitter-panel>
+        <el-splitter-panel :min="200">
+            <div class='flex h-full flex-1 flex-col'>
+                <el-splitter layout="vertical">
+                <el-splitter-panel :min="200">
+                    <div class='h-full overflow-hidden'>
+                        <layout-content />
+                    </div>
+                </el-splitter-panel>
+                <el-splitter-panel :size="220">
+                    <div class="flex h-full">
+                        <bottom-area />
+                    </div>
+                </el-splitter-panel>
+                </el-splitter>
             </div>
-        </div>
+        </el-splitter-panel>
+        </el-splitter>
+
+
+
     </div>
     <div class="flex h-6">
         <LayoutStatusbar />
     </div>
-    </div>
+</div>
 </template>
 
 <script lang='ts' setup>
