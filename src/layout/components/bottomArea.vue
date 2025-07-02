@@ -4,6 +4,7 @@
             <log-detail-panel></log-detail-panel>
         </el-tab-pane>
         <el-tab-pane class="h-full" label='查询结果'>
+            <query-result-panel></query-result-panel>
         </el-tab-pane>
         <el-tab-pane class="h-full" label='输出'>
         </el-tab-pane>
@@ -13,6 +14,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import LogDetailPanel from '/@/layout/components/logDetailPanel.vue'
+import QueryResultPanel from '/@/layout/components/queryResult.vue'
 
 </script>
 
