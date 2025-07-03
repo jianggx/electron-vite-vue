@@ -7,6 +7,7 @@
             <query-result-panel></query-result-panel>
         </el-tab-pane>
         <el-tab-pane class="h-full" label='输出'>
+            <logListCodemirror></logListCodemirror>
         </el-tab-pane>
     </el-tabs>
 </template>
@@ -15,6 +16,7 @@
 import { ref } from 'vue'
 import LogDetailPanel from '/@/layout/components/logDetailPanel.vue'
 import QueryResultPanel from '/@/layout/components/queryResult.vue'
+import logListCodemirror from '/@/layout/components/logListCodemirror.vue'
 
 </script>
 

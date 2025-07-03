@@ -24,12 +24,12 @@ const logExamples = ["FrameHead: msgType=trace,\tframeType=entire,\tCupId=0,\tto
 
 var code = ref("")
 
-import { StreamLanguage } from "@codemirror/language"
+import { StreamLanguage, StringStream } from "@codemirror/language"
 import { indentUnit } from "@codemirror/language"
 
 // 自定义词法规则 (示例：高亮自定义关键字)
 const customLexer = {
-  token: (stream) => {
+  token: (stream: StringStream) => {
     if (stream.match("FrameHead"))  return "keyword";
     if (stream.match("msgType"))  return "keyword";
     if (stream.match("msgSn"))  return "keyword";
@@ -67,61 +67,11 @@ const customTheme = EditorView.theme({
   ".cm-variable": { color: "#4ECDC4" }
 });
 
-import { Decoration } from '@codemirror/view';
-import { StateEffect } from '@codemirror/state';
-
-// 定义一个装饰效果，用于添加或替换装饰
-const addLineDecoration = StateEffect.define(); 
-// 函数：根据条件（比如行内容）计算装饰集
-function computeDecorations(view) {
-  let decorations = [];
-  // 遍历每一行
-  for (let { from, to } of view.visibleRanges)  {
-    for (let pos = from; pos <= to; ) {
-      let line = view.state.doc.lineAt(pos); 
-      // 如果该行包含“error”，则添加装饰
-      if (line.text.includes('msgType=trace'))  {
-        // 创建行装饰，注意：行装饰是从行开头到行末尾（不包括行尾换行符）
-        let deco = Decoration.line({ 
-          attributes: { class: 'error-line' }
-        });
-        decorations.push(deco.range(line.from)); 
-      }
-      pos = line.to  + 1;
-    }
-  }
-  return Decoration.set(decorations); 
-}
-
-// 扩展：当文档或视图变化时，重新计算装饰
-const dynamicLineDecorator = EditorView.updateListener.of(update  => {
-  if (update.docChanged  || update.viewportChanged)  {
-    let view = update.view; 
-    let decorations = computeDecorations(view);
-    // 使用事务效果更新装饰
-    view.dispatch({ 
-      effects: addLineDecoration.of(decorations) 
-    });
-  }
-});
-
-// 将上述扩展组合起来
-const customTheme2 = EditorView.baseTheme({ 
-  '.error-line': { backgroundColor: '#ff00004d' } // 半透明红色背景
-});
-
-const lineHighlighter = [
-  dynamicLineDecorator,
-  customTheme2
-];
-
-
 
 const extensions = [ 
     customMode,
     //customTheme,
     basicSetup,
-    lineHighlighter,
     //EditorView.lineWrapping, 
     EditorView.domEventHandlers({
     click: (event, view) => {
@@ -135,7 +85,7 @@ const extensions = [
     },
 })] // [oneDark, EditorView.lineWrapping]
 const view = shallowRef()
-const handleReady = (payload) => {
+const handleReady = (payload: any) => {
     view.value = payload.view
 }
 

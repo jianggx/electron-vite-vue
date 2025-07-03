@@ -21,7 +21,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import type { Column } from 'element-plus'
+import type { Column, RowClassNameGetter } from 'element-plus'
 import { TableV2FixedDir, TableV2Instance } from 'element-plus'
 
 const tableRef = ref<TableV2Instance>()
@@ -146,11 +146,11 @@ const columns: Column<any>[] = [
 
 let lineNo = 1
 const dataGenerator = () =>{ 
-    let val = {... Math.random() > 0.5 ? logExamples[0] : logExamples[1]}
-    val['lineNo'] = lineNo
-    val["id"] = `${lineNo}`;
+    let item:any = {... Math.random() > 0.5 ? logExamples[0] : logExamples[1]}
+    item['lineNo'] = lineNo
+    item["id"] = `${lineNo}`;
     lineNo++
-    return val
+    return item
 }
 const data =  Array.from({ length: 10000 }).map(dataGenerator)
 
@@ -196,3 +196,9 @@ const rowClass = ({ rowIndex }: Parameters<RowClassNameGetter<any>>[0]) => {
 }
 
 </script>
+
+<style scoped>
+:deep(.el-table-v2__header-cell){
+    background-color:ghostwhite;
+}
+</style>

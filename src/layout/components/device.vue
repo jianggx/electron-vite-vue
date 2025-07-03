@@ -58,7 +58,6 @@
 </template>
 <script lang="ts" setup>
 import { ref, onMounted, shallowRef } from 'vue'
-import logListCodemirror from '/@/layout/components/logListCodemirror.vue'
 import logListVTable from '/@/layout/components/logListVTable.vue'
 
 const search_input = ref('')
@@ -75,7 +74,7 @@ const options = [
     }
 ]
 
-const myaleret = (msg) => {
+const myaleret = (msg: string) => {
     alert(msg)
 }
 

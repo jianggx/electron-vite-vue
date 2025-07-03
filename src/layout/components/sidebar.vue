@@ -42,7 +42,7 @@ interface Tree {
   children?: Tree[]
 }
 
-const handleDbClick = (node, data) => {
+const handleDbClick = (_node:any, data:any) => {
   alert(data.type + ': ' + data.label)
   return true
 }
