@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="flex ml-0.5 mr-0.5 mt-0.5  flex-col h-full  overflow-hidden flex-1">
-            <logListCodemirror>   </logListCodemirror>
+            <logListVTable>   </logListVTable>
         </div>
         <div class="flex ml-0.5 mr-0.5 mt-0.5  h-f10 flex-row">
             <el-button class="flex" size="small" @click="" icon='el-icon-video-play'></el-button>
@@ -59,6 +59,7 @@
 <script lang="ts" setup>
 import { ref, onMounted, shallowRef } from 'vue'
 import logListCodemirror from '/@/layout/components/logListCodemirror.vue'
+import logListVTable from '/@/layout/components/logListVTable.vue'
 
 const search_input = ref('')
 const query_input = ref('')
