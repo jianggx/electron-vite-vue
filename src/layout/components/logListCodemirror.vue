@@ -16,11 +16,13 @@ import {EditorView, basicSetup } from "codemirror"
 import { html } from "@codemirror/lang-html";
 
 
-const logExamples = ["FrameHead: msgType=trace,\tframeType=entire,\tCupId=0,\ttoolId=12;\t"+
-                            "TraceHead:\tmodId=PHY,\ttraceLevel=Debug,\ttimeStamp=2025-06-21 14:30:05,\ttraceFlag=unilog,\n"
-                      ,"FrameHead: msgType=diag,\tframeType=entire,\tCupId=0,\ttoolId=12;\t"+
-                        "DiagLogHead:\tsrcTaskId=11(tABC),\tsrcProcId=113(POCC_EE),\tdestTaskId=11(tABC),\tdestProcId=113(POCC_EE),\tsapId=2(AED_AEE),\tprimId=22323(STEE_SFSDFS_EEEE_PROCC)\tmessageName=DED_EE_YUIG\ttimeStamp=2025-06-21 14:30:05\n"
-                    ]
+const logExamples = ["2025-06-21 14:30:05, [DEBUG]traceFlag=unilog, msgType=FrameHead, msgSn=123456789, CupId=987654321, frameType=0, toolId=tool123, reserved1=0, reserved2=0",
+                     "2025-06-21 14:30:05, [ERROR]get unexpected msgType=TraceHead",
+                     "2025-06-21 14:30:05, [ERROR]failed to get the device info.",
+                     "2025-06-21 14:30:05, [ERROR]get unexpected msgType=TraceHead",
+                     "2025-06-21 14:30:05, [DEBUG]send the message in 2ms.",
+                     "2025-06-21 14:30:05, [DEBUG]traceFlag=unilog, msgType=FrameHead, msgSn=123456789, CupId=987654321, frameType=0, toolId=tool123, reserved1=0",
+]
 
 var code = ref("")
 
@@ -30,26 +32,8 @@ import { indentUnit } from "@codemirror/language"
 // 自定义词法规则 (示例：高亮自定义关键字)
 const customLexer = {
   token: (stream: StringStream) => {
-    if (stream.match("FrameHead"))  return "keyword";
-    if (stream.match("msgType"))  return "keyword";
-    if (stream.match("msgSn"))  return "keyword";
-    if (stream.match("CupId"))  return "keyword";
-    if (stream.match("frameType"))  return "keyword";
-    if (stream.match("toolId"))  return "keyword";
-    if (stream.match("TraceHead"))  return "keyword";
-    if (stream.match("modId"))  return "keyword";
-    if (stream.match("timeStamp"))  return "keyword";
-    if (stream.match("traceFlag"))  return "keyword";
-    if (stream.match("reserved1"))  return "keyword";
-    if (stream.match("reserved2"))  return "keyword";
-    if (stream.match("DiagLogHead"))  return "keyword";
-    if (stream.match("srcTaskId"))  return "keyword";
-    if (stream.match("srcProcId"))  return "keyword";
-    if (stream.match("destTaskId"))  return "keyword";
-    if (stream.match("destProcId"))  return "keyword";
-    if (stream.match("sapId"))  return "keyword";
-    if (stream.match("primId"))  return "keyword";
-    if (stream.match("messageName"))  return "keyword";
+    if (stream.match("ERROR"))  return "keyword";
+    if (stream.match("DEBUG"))  return "variable";
     stream.next(); 
     return null;
   }
@@ -91,7 +75,7 @@ const handleReady = (payload: any) => {
 
 onMounted(() => {
     for(let i=0; i<100; i++){
-        code.value += logExamples[Math.floor(Math.random()  * logExamples.length)]
+        code.value += (logExamples[Math.floor(Math.random()  * logExamples.length)] + "\n");
     }
    
 })
